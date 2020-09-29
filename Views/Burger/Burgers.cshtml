@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BurgersDB.Models.Burger>
+
+@{
+    ViewData["Title"] = "Burgers";
+}
+
+<h1>Burgers</h1>
+
+<p>
+    <a asp-action="AddNew" class="btn btn-outline-dark">Add New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "AddNew", new { item.BurgerId,item.Name,item.Address,item.Telephone },new { @class="btn btn-outline-warning"}) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.BurgerId }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
